@@ -686,17 +686,19 @@ def loadAgent(pacman, nographics):
                     ' is not specified in any *Agents.py.')
 
 
-def replayGame(layout, actions, display):
+def replayGame(layout, actions, display, numMoves):
 
     import game
     rules = ClassicGameRules()
     agents = [game.Agent()] + [game.Agent(i+1) for i in range(layout.getNumGhosts())]
     game = rules.newGame(layout, agents[0], agents[1:], display)
     state = game.state
+    state.movesToGo = numMoves
     display.initialize(state.data)
-
+    #print('Moves:',state.numMoves())
     for action in actions:
             # Execute the action
+        #print('Moves:',state.numMoves())
         state = state.generateSuccessor(*action)
         # Change the display
         display.update(state.data)
@@ -740,7 +742,7 @@ def runGames(layout, pacman, ghosts, display, numGames, record, limMoves,numTrai
                 '-').join([str(t) for t in time.localtime()[1:6]])
             #print(fname)
             f = open(fname, 'bw')
-            components = {'layout': layout, 'actions': game.moveHistory}
+            components = {'layout': layout, 'actions': game.moveHistory, 'numMoves':limMoves}
             pickle.dump(components, f)
             f.close()
 

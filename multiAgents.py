@@ -192,6 +192,7 @@ def identity(gState,extra):
 def extra_mem(gState,extra):
     """ memorizes the positions of Pacman and ghosts
     """
+    # print('yeahhhhhh: applying extra_mem')
     if extra == {}:
         n_extra ={'Pacman':[gState.getPacmanPosition()],'Ghosts':[gState.getGhostPosition(1)]}
         return n_extra
@@ -205,7 +206,7 @@ def extra_memF(gState,extra):
     """ memorizes the positions of Pacman and ghosts
     """
     if extra == {}:
-        n_extra ={'Pacman':[gState.getPacmanPosition()],'Ghosts':[]}
+        n_extra ={'Pacman':[gState.getPacmanPosition(),gState.getPacmanState().start.getPosition()],'Ghosts':[gState.getGhostPosition(1)]}
         return n_extra
     else:
         n_extra=extra.copy()
@@ -248,6 +249,7 @@ class AlphaBetaGhost(MultiAgentSearchAgent):
         """
         Returns the alfabeta action using self.depth and self.evaluationFunction
         """
+        #print('Before jogada... the extra of Ghost is:',self.extra)
         #print('Jogada dupla:',gameState.numMoves())
         #print("Lets decide with Extra do Ghost",self.extra_fn)
         self.extra=self.extra_fn(gameState,self.extra)
@@ -269,8 +271,10 @@ class AlphaBetaAgent(MultiAgentSearchAgent):
         """
         Returns the minimax action using self.depth and self.evaluationFunction
         """
+        #print('Before jogada... the extra of Pac is:',self.extra)
+        #print('Jogada dupla:',gameState.numMoves())
         #print("Lets decide with Extra do Pac",self.extra_fn)
-        #self.extra=self.extra_fn(gameState,self.extra)
+        self.extra=self.extra_fn(gameState,self.extra)
         #print('Current extra:',self.extra)
         currentState = ClassicPac(to_move="Pacman",board=gameState,extra=self.extra)
         thisGame = ClassicPacman(currentState)
