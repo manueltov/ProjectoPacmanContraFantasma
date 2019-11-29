@@ -227,7 +227,7 @@ class GameState:
 
     def isWin(self):
         return self.data._win
-    
+
     def numMoves(self):
         return self.movesToGo
 
@@ -300,7 +300,7 @@ class ClassicGameRules:
     def newGame(self, layout, pacmanAgent, ghostAgents, display,quiet=False, limMoves=100,catchExceptions=False):
         #print('pacmanAgent=',pacmanAgent,'ghostAgents=',ghostAgents,'display=',display,'quite=',quiet)
         # pacman é a função passada que decide a sua acção em cada momento
-        # ghostagents é a lista de funções passadas que decidem as suas acções em cada momento 
+        # ghostagents é a lista de funções passadas que decidem as suas acções em cada momento
         # (aparentemente posso ter fantasmas de vários tipos) ignoram-se aqueles que se referem a fantasmas fora dos limites do layout
         # display é um objecto de que classe??????
         #print('NewGame: limite de jogadas:',limMoves)
@@ -591,7 +591,7 @@ def readCommand(argv):
         random.seed('cs188')
 
     # Choose a layout
-    args['layout'] = layout.getLayout(options.layout) 
+    args['layout'] = layout.getLayout(options.layout)
     if args['layout'] == None:
         raise Exception("The layout " + options.layout + " cannot be found")
 
@@ -622,7 +622,7 @@ def readCommand(argv):
          g.index = i+1
          args['ghosts'].append(g)
     #print(args['ghosts'][0].depth)
-    
+
     # Choose a display format
     if options.quietGraphics:
         import textDisplay
@@ -653,7 +653,7 @@ def readCommand(argv):
         recorded['display'] = args['display']
         replayGame(**recorded)
         sys.exit(0)
-    
+
     #print(args['layout'])
     return args
 
@@ -716,7 +716,7 @@ def runGames(layout, pacman, ghosts, display, numGames, record, limMoves,numTrai
     games = []
     namePac="Pac"+pacman.myName()
     nameGhost="Fant"+ghosts[0].myName()
-    
+
     for i in range(numGames):
         beQuiet = i < numTraining
         if beQuiet:
