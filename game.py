@@ -658,7 +658,6 @@ class Game:
         while not self.gameOver:
             agent = self.agents[agentIndex]
             #print(self.state.numMoves(),'O jogo não acabou!',agentIndex, 'vai jogar')
-            #print('My extraFn =',agent.extra_fn,'and my extra=',agent.extra)
             move_time = 0           
             skip_action = False
             # Generate an observation of the state (no nosso caso ignorar porque o estado completo é a observação)
