@@ -30,7 +30,9 @@ import random
 from utils import argmax
 
 infinity = float('inf')
-ClassicPac = namedtuple('ClassicPac', 'to_move, board, extra',defaults=[None])
+# ClassicPac = namedtuple('ClassicPac', 'to_move, board, extra',defaults=[None])
+# cortámos o defaults pois dava erro...
+ClassicPac = namedtuple('ClassicPac', 'to_move, board, extra')
 
 class ClassicPacman:
     """A game is similar to a problem, but it has a utility for each
