@@ -2,34 +2,26 @@ import run
 import projIIA_22
 from random import *
 
-NUM_TESTES = 20
+NUM_TESTES = 3
 
 def corre_pac(param_1, param_2, param_3):
 
-    def func_aval():
-        p1 = param_1
-        p2 = param_2
-        p3 = param_3
-
-        return p1*p2*p3
-
-    ##correr com os atributos q queremos lalala // funcao q o stor usa pa correr
     def pac_22_testing(gState,player):
-
         #distancia ao fantasma
         a = manhatanDist(gState.board.getPacmanPosition(), gState.board.getGhostPosition(1))
-
         #fantasma com medo
+        # TO DO
         b = 0 #nesta parte tratar caso o fantasma tenha medo ou nao
-
         #distancia ah pastilha mais proxima
         c = distAhPastilhaMaisProxima(gState,player)
-
         #distancia ah super pastilha mais proxima
         d = distAhSuperPastilhaMaisProxima(gState,player)
-
-        return (a * param_1) + (b * 1) + (c * param_2) + (d * param_3)
-
+        #ver se vale a pena perseguir o fantasma
+        # TO DO
+        e = 0
+        #quantas jogadas faltam
+        f = gState.board.numMoves()/2
+        return (a * param_1) + (b * 1) + (c * param_2) + (d * param_3) + (e * 1) + (f * 1)
 
     return run.runPacmanMain(opt_agent_args = "depth=8,evalFn=testing.corre_pac.pac_22_testing")
 

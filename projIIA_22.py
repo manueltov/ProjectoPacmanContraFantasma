@@ -5,6 +5,7 @@ def pac_22(gState,player):
     a = manhatanDist(gState.board.getPacmanPosition(), gState.board.getGhostPosition(1))
 
     #fantasma com medo
+    # TO DO
     b = 0 #nesta parte tratar caso o fantasma tenha medo ou nao
 
     #distancia ah pastilha mais proxima
@@ -13,7 +14,14 @@ def pac_22(gState,player):
     #distancia ah super pastilha mais proxima
     d = distAhSuperPastilhaMaisProxima(gState,player)
 
-    return (a * 1) + (b * 1) + (c * 1) + (d * 1)
+    #ver se vale a pena perseguir o fantasma
+    # TO DO
+    e = 0
+
+    #quantas jogadas faltam
+    f = gState.board.numMoves()/2
+
+    return (a * 1) + (b * 1) + (c * 1) + (d * 1) + (e * 1) + (f * 1)
 
 "esta eh a funcao que fara o fantama pensar em como maximizar o score para si"
 def fant_22(gState,player):
