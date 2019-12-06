@@ -2,7 +2,7 @@ import run
 import projIIA_22
 from random import *
 
-NUM_TESTES = 3
+NUM_TESTES = 5
 
 def corre_pac(param_1, param_2, param_3):
 
