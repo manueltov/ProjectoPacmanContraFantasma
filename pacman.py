@@ -1,5 +1,3 @@
-import projIIA_22
-
 # pacman.py
 # ---------
 # Licensing Information:  You are free to use or extend these projects for
@@ -761,6 +759,19 @@ def runGames(layout, pacman, ghosts, display, numGames, record, limMoves,numTrai
 
     return games
 
+
+##########################################################################################
+if __name__ == 'pacman':
+    def corre_pac_main(opt_ghost_args="depth=8,evalFn=anti_score", opt_agent_args="depth=8,evalFn=so_score"):
+        args = readCommand(["-q", "-g", "AlphaBetaGhost", "-b", opt_ghost_args, "-p", "AlphaBetaAgent", "-a", opt_agent_args, "--frameTime", "0", "-k", "1", "-l", "mediumClassic"] )
+        #print(args['limMoves'])
+        #print(args)
+        runGames(**args)
+
+        # import cProfile
+        # cProfile.run("runGames( **args )")
+        pass
+##########################################################################################
 
 if __name__ == '__main__':
     """
