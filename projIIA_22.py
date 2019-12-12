@@ -5,11 +5,9 @@ import layout
 "esta eh a funcao que fara o pacman pensar em como maximizar o score para si"
 def pac_22(gState,player):
 
-
-
     #distancia ao fantasma
     #a = manhatanDist(gState.board.getPacmanPosition(), gState.board.getGhostPosition(1))
-    a = distanciaMelhorada(gState, gState.board.getPacmanPosition(), gState.board.getGhostPosition(1))
+    #a = distanciaMelhorada(gState, gState.board.getPacmanPosition(), gState.board.getGhostPosition(1))
 
     #fantasma com medo
     b = 0 #nesta parte tratar caso o fantasma tenha medo ou nao
@@ -21,8 +19,8 @@ def pac_22(gState,player):
     d = distAhSuperPastilhaMaisProxima(gState,player)
 
     #return (a * 1) + (b * 1) + (c * 1) + (d * 1)
-    #return multiAgents.aval_fixe_pac(gState, player)
-    return a
+    return aval_fixe_pac(gState, player)
+    #return a
 
 "esta eh a funcao que fara o fantama pensar em como maximizar o score para si"
 def fant_22(gState,player):
@@ -111,7 +109,7 @@ def limpaLayout(mapa):
 ####################################################
 ######   DO PROF MAS PARA IR TENDO IDEIAS   ########
 ####################################################
-"""
+
 def so_score(gState,player):
     return gState.board.getScore()
 
@@ -131,20 +129,10 @@ def manhatanDist(p1,p2):
         p1x,p1y=p1
         p2x,p2y=p2
         return abs(p1x-p2x)+abs(p1y-p2y)
-"""
 
-
-
-############
-## here ####
-############
-
-
-def manhatanDist(p1,p2):
-        p1x,p1y=p1
-        p2x,p2y=p2
-        return abs(p1x-p2x)+abs(p1y-p2y)
-
+########################################################
+######   O QUE TEMOS A FUNCIONAR POR ENQUANTO   ########
+########################################################
 
 def minDistPast(gState):
     foodList = gState.board.getFood().asList()
@@ -201,22 +189,20 @@ def aval_fixe_pac(classicPac, player):
     #se ainda o apanho...
     if ghostDist < classicPac.board.getGhostState(1).scaredTimer:
         ghostFear = -1000000000 + (1000/100*ghostDist); ##medo negativo grande, coragem
-        print("Pop")
+        #print("Pop")
 
-        print("bla: ",classicPac.board.getGhostState(1).start)
-        print("ble: ", classicPac.board.getGhostState(1).start.getPosition())
-        cx,cy = classicPac.board.getGhostState(1).start.getPosition()
-        x = int(cx)
-        y = int(cy)
-        print(cx , "=", x, " ; ", cy, "=", y)
+        #print("bla: ",classicPac.board.getGhostState(1).start)
+        #print("ble: ", classicPac.board.getGhostState(1).start.getPosition())
+        #cx,cy = classicPac.board.getGhostState(1).start.getPosition()
+        #x = int(cx)
+        #y = int(cy)
+        #print(cx , "=", x, " ; ", cy, "=", y)
         return score *1000000000/ghostDist + classicPac.board.numMoves()*100 + len(classicPac.board.getCapsules())*100000000000000000;
     elif ghostDist > 4 and ghostTaAfastar(classicPac) and classicPac.board.getGhostState(1).scaredTimer == 0:
         #menos medo de proximidade de ghost se ta a afastar pq ele n volta pa tras a n ser em cruzilhada
         #dai o > 4
         ghostFear = ghostFear / 2
         #return scooore(classicPac, player)  * 1.5
-
-
 
 
     ##return 100 * score +  (-0 * ghostFear) + (-1 * minDistPastilha) + (1 * QtPast)
